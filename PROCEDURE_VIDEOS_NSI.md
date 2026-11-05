@@ -7,26 +7,25 @@ Objet : ajouter les sous-titres et les cartes animées aux 16 nouvelles vidéos 
 
 ## 1. En bref
 
-- Les **voix et les vidéos d'avatar** sont produites à partir des scripts NSI (`Scripts_Videos_Modules.md`, `Scripts_Videos_EN_Niveau1.md`, `Scripts_Videos_EN_Niveaux2-4.md`).
+- Les **voix et les vidéos d'avatar** sont produites à partir des scripts NSI que tu as mis à jour (`Scripts_Videos_Modules.md`, `Scripts_Videos_EN_Niveau1.md`, `Scripts_Videos_EN_Niveaux2-4.md`).
 - Chaque vidéo reçoit ensuite deux habillages :
   1. des **sous-titres** en bas, calés sur la voix, avec les mots clés en rouge ;
   2. **6 cartes animées** à droite, une par paragraphe du script.
 - **Aucun logo n'est ajouté** : le logo « NSI TV » est déjà présent dans la vidéo d'avatar.
-- L'outil est prêt et déjà aux couleurs NSI. Une maquette complète du **niveau 1, module 1** sert de modèle (`apercus/niveau1-module1_planche.png`).
+- Tout ce qu'il faut est dans le dossier **`kit_habillage_NSI`** joint à ce document. L'outil est déjà aux couleurs NSI, et une maquette complète du **niveau 1, module 1** sert de modèle.
 
-## 2. Où trouver les fichiers
+## 2. Contenu du kit
 
-Dépôt GitHub `sonnickmatis-rgb/agora-debate-hub`, branche **`ai-act-ba`**.
-
-| Chemin | Contenu |
+| Fichier | Contenu |
 |---|---|
-| `outils_video/habillage.py` | L'outil d'habillage (charte NSI) |
-| `outils_video/configs/niveau1-module1.py` | **Modèle validé** : config complète du niveau 1, module 1 (FR) |
-| `outils_video/configs/niveau2-module1-en.py` … `niveau4-module2-en.py` | Anciennes configs anglaises : **contenu Blockchain AkademIA, à réécrire** avec les scripts NSI (elles servent seulement de base pour la mise en page) |
-| `apercus/niveau1-module1_planche.png` | Aperçu des 6 cartes du modèle |
-| `Scripts_Videos_*.md` | Les textes de référence (voix et texte à l'écran) |
+| `PROCEDURE_VIDEOS_NSI.md` | Ce document |
+| `habillage.py` | L'outil d'habillage, réglé sur la charte NSI |
+| `fonts/` | Les polices Titillium Web et Poppins (lues automatiquement par l'outil) |
+| `configs/niveau1-module1.py` | **Le modèle** : configuration complète du niveau 1, module 1 (FR) |
+| `configs/anciennes_BA/` | Anciennes configurations anglaises des niveaux 2 à 4. Leur contenu est celui de la version Blockchain AkademIA, **à ne pas reprendre** : elles servent seulement d'exemples de mise en page |
+| `apercu_niveau1-module1.png` | Aperçu des 6 cartes du modèle |
 
-Les vidéos brutes sont dans le dossier Drive « Vidéo brut avant Claude ».
+Le texte de référence de chaque vidéo est celui des scripts NSI.
 
 ## 3. Charte appliquée (déjà réglée dans l'outil)
 
@@ -40,8 +39,6 @@ Les vidéos brutes sont dans le dossier Drive « Vidéo brut avant Claude ».
 | Cartes | Blanches, semi-transparentes, à droite, sous le logo « NSI TV » |
 | Logo | **Aucun** (déjà dans la vidéo) |
 
-Les polices sont lues dans `src/fonts/` : rien à installer.
-
 ## 4. Pré-requis sur l'ordinateur
 
 - Python 3 avec Pillow : `pip install pillow`
@@ -50,9 +47,11 @@ Les polices sont lues dans `src/fonts/` : rien à installer.
 
 ## 5. Procédure, vidéo par vidéo
 
+Toutes les commandes se lancent depuis le dossier `kit_habillage_NSI`. Mettre les vidéos brutes dans un sous-dossier `BRUT/`.
+
 ### Étape 1 · Nommer la vidéo brute
 
-Utiliser exactement ces noms, sinon la plateforme ne trouve pas la vidéo :
+Garder exactement les noms déjà utilisés par la plateforme :
 
 | Vidéo | FR | EN |
 |---|---|---|
@@ -74,7 +73,7 @@ whisper BRUT/niveau1-module1.mp4 --model small --language fr --output_format jso
 
 ### Étape 3 · Écrire ou compléter la configuration
 
-Une config par vidéo dans `outils_video/configs/`, même nom que la vidéo avec `.py` (ex. `niveau2-module1-en.py`).
+Une config par vidéo dans `configs/`, même nom que la vidéo avec `.py` (ex. `niveau2-module1-en.py`).
 
 - **Sous-titres** (`SUBS`) : une liste de `(début, fin, "texte")`, en secondes. Couper en lignes courtes ; mettre les mots clés entre `**…**` pour les afficher en rouge. L'outil signale toute ligne trop large (plus de 1700 px) : la couper en deux.
 - Dans le modèle `niveau1-module1.py`, les temps sont **provisoires** (calculés sur la longueur du texte). Les remplacer par les vrais temps donnés par Whisper.
@@ -87,8 +86,7 @@ Une config par vidéo dans `outils_video/configs/`, même nom que la vidéo avec
 ### Étape 4 · Vérifier sur une image fixe (rapide, sans calcul vidéo)
 
 ```bash
-cd outils_video
-ffmpeg -ss 20 -i ../BRUT/niveau1-module1.mp4 -frames:v 1 image.png
+ffmpeg -ss 20 -i BRUT/niveau1-module1.mp4 -frames:v 1 image.png
 python3 habillage.py configs/niveau1-module1.py --apercu image.png 20 apercu.png
 ```
 Ouvrir `apercu.png` : vérifier qu'aucun texte ne déborde de sa carte et que les cartes ne touchent pas le logo. Tester un instant par carte.
@@ -96,16 +94,16 @@ Ouvrir `apercu.png` : vérifier qu'aucun texte ne déborde de sa carte et que le
 ### Étape 5 · Produire la vidéo finale
 
 ```bash
-cd outils_video
-python3 habillage.py configs/niveau1-module1.py ../BRUT/niveau1-module1.mp4 ../src/videos_HD_soustitrees/niveau1-module1.mp4 ../src/videos/niveau1-module1.mp4
+mkdir -p HD 720p
+python3 habillage.py configs/niveau1-module1.py BRUT/niveau1-module1.mp4 HD/niveau1-module1.mp4 720p/niveau1-module1.mp4
 ```
-- 1er fichier de sortie : version **HD** (archive).
-- 2e fichier : version **720p**, celle que la plateforme utilise.
+- `HD/` : version haute définition (archive).
+- `720p/` : version utilisée par la plateforme.
 
 ### Étape 6 · Mettre en ligne
 
-- Version web NSI (dossier `site/`) : remplacer la vidéo du même nom par la version 720p.
-- Paquets SCORM : déposer les 720p dans `src/videos/` puis lancer `python3 build.py`.
+- Version web NSI (`site/`) : remplacer chaque vidéo par la version `720p/` du même nom.
+- Paquets SCORM, s'ils doivent être reconstruits : déposer les fichiers `720p/` dans `src/videos/` du projet, puis lancer `python3 build.py`.
 
 ## 6. Ordre de travail conseillé
 
@@ -116,11 +114,11 @@ python3 habillage.py configs/niveau1-module1.py ../BRUT/niveau1-module1.mp4 ../s
 ## 7. Points de vigilance
 
 - Les textes des cartes et des sous-titres sont juridiques : les reprendre **mot pour mot** du script, sans ajouter de fait, de date ou d'article.
-- Les vidéos de niveau 4, module 2 parlent des autorités belges et luxembourgeoises : vérifier qu'elles sont toujours à jour avant la diffusion (consigne des scripts).
+- La vidéo du niveau 4, module 2 parle des autorités belges et luxembourgeoises : vérifier qu'elles sont toujours à jour avant la diffusion (consigne des scripts).
 - Respecter exactement les noms de fichiers du tableau de l'étape 1.
 
-## 8. Si vous travaillez avec un assistant de code (Claude Code, Codex…)
+## 8. Avec un assistant de code (Claude Code, Codex…)
 
-Ouvrir le dépôt sur la branche `ai-act-ba` et lui donner cette consigne :
+Ouvrir le dossier `kit_habillage_NSI` (avec les vidéos dans `BRUT/` et les scripts NSI à côté) et donner cette consigne :
 
-> Lis CLAUDE.md et PROCEDURE_VIDEOS_NSI.md. En prenant `outils_video/configs/niveau1-module1.py` comme modèle validé, crée les configurations d'habillage des 15 autres vidéos à partir des scripts NSI, en reprenant le texte mot pour mot. Cale les sous-titres sur les fichiers Whisper du dossier `whisper/`. Vérifie chaque carte avec `--apercu` avant de produire les vidéos, et montre-moi les aperçus avant le rendu final.
+> Lis PROCEDURE_VIDEOS_NSI.md. En prenant `configs/niveau1-module1.py` comme modèle validé, crée les configurations d'habillage des 15 autres vidéos à partir des scripts NSI, en reprenant le texte mot pour mot. Lance Whisper sur chaque vidéo de `BRUT/` et cale les sous-titres sur ses temps. Vérifie chaque carte avec `--apercu` et montre-moi les aperçus avant de produire les vidéos finales.

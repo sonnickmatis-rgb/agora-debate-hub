@@ -19,7 +19,7 @@ W, H = 1920, 1080
 # Palette NSI : VIO = bleu pétrole (titres), DK = fond sombre / texte, PK = rouge (mots clés), CY = cyan (secondaire)
 VIO, DK, PK, CY, WH = (9, 55, 70), (0, 40, 50), (238, 70, 91), (49, 184, 232), (255, 255, 255)
 HERE = os.path.dirname(os.path.abspath(__file__))
-FONTS = os.path.join(HERE, '..', 'src', 'fonts')
+FONTS = next((d for d in (os.path.join(HERE, 'fonts'), os.path.join(HERE, '..', 'src', 'fonts')) if os.path.isdir(d)), os.path.join(HERE, 'fonts'))
 LOGO = os.path.join(HERE, '..', 'src', 'assets', 'logo-ba.png')  # non utilisé pour NSI : le logo est déjà dans la vidéo
 
 # Titres (style par défaut "Bold") en Titillium Web, texte courant en Poppins.
