@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Habillage des vidéos de présentation (charte BA) : sous-titres + cartes animées.
+"""Habillage des vidéos de présentation (charte NSI) : sous-titres + cartes animées.
 
 Usage :
   python3 habillage.py config.py video_source.mp4 sortie_HD.mp4 [sortie_720p.mp4]
@@ -7,24 +7,28 @@ Usage :
 Le fichier de configuration définit :
   SUBS  = [(debut, fin, "texte avec **mots clés** en rose"), ...]
   CARDS = [(hauteur_px, debut, fin, fonction_dessin), ...]   # fonction(d, im, x, y)
-Il peut utiliser les outils exportés ici : f(), VIO, DK, PK, WH, chk(), crs(), arr(), pill(), logo().
+Il peut utiliser les outils exportés ici : f(), VIO, DK, PK, CY, WH, chk(), crs(), arr(), pill(), logo().
+
+Aperçu sans vidéo (une image fixe, à l'instant t en secondes) :
+  python3 habillage.py config.py --apercu image_de_fond.png t sortie.png
 """
 import os, re, subprocess, sys, tempfile
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 W, H = 1920, 1080
-VIO, DK, PK, WH = (68, 49, 141), (32, 3, 90), (217, 63, 135), (255, 255, 255)
-FONT = "/System/Library/Fonts/Avenir Next.ttc"
+# Palette NSI : VIO = bleu pétrole (titres), DK = fond sombre / texte, PK = rouge (mots clés), CY = cyan (secondaire)
+VIO, DK, PK, CY, WH = (9, 55, 70), (0, 40, 50), (238, 70, 91), (49, 184, 232), (255, 255, 255)
 HERE = os.path.dirname(os.path.abspath(__file__))
-LOGO = os.path.join(HERE, '..', 'src', 'assets', 'logo-ba.png')
+FONTS = os.path.join(HERE, '..', 'src', 'fonts')
+LOGO = os.path.join(HERE, '..', 'src', 'assets', 'logo-ba.png')  # non utilisé pour NSI : le logo est déjà dans la vidéo
 
-_idx = {}
-for i in range(16):
-    try: _idx[ImageFont.truetype(FONT, 10, index=i).getname()[1]] = i
-    except Exception: break
-
+# Titres (style par défaut "Bold") en Titillium Web, texte courant en Poppins.
+_FILES = {"Bold": "titilliumweb-700", "Semi": "titilliumweb-600", "Demi Bold": "poppins-600", "Medium": "poppins-500", "Regular": "poppins-400"}
+_cache = {}
 def f(size, style="Bold"):
-    return ImageFont.truetype(FONT, size, index=_idx.get(style, 0))
+    k = (size, style)
+    if k not in _cache: _cache[k] = ImageFont.truetype(os.path.join(FONTS, _FILES.get(style, "titilliumweb-700") + ".woff2"), size)
+    return _cache[k]
 
 # --- Petits éléments de dessin -------------------------------------------------
 def chk(d, x, y, c=PK): d.line([(x + 2, y + 26), (x + 14, y + 38), (x + 34, y + 12)], fill=c, width=7)
@@ -39,14 +43,14 @@ def logo(im, x, y):
 FS = None
 def subtitle(text):
     global FS
-    FS = FS or f(44, "Demi Bold")
+    FS = FS or f(42, "Demi Bold")
     parts = re.split(r"(\*\*.*?\*\*)", text); segs = [(p.strip("*"), p.startswith("**")) for p in parts if p]
     tw = sum(FS.getlength(s) for s, _ in segs)
     if tw > 1700: print(f"  ⚠ sous-titre trop long ({int(tw)} px) : {text}")
     im = Image.new("RGBA", (W, H)); d = ImageDraw.Draw(im)
     x0 = (W - tw) / 2; y = 950
-    d.rounded_rectangle((x0 - 36, y - 22, x0 + tw + 36, y + 70), radius=46, fill=DK + (225,))
-    d.rounded_rectangle((x0 - 36, y - 22, x0 + tw + 36, y + 70), radius=46, outline=VIO + (255,), width=2)
+    d.rounded_rectangle((x0 - 36, y - 20, x0 + tw + 36, y + 72), radius=46, fill=DK + (230,))
+    d.rounded_rectangle((x0 - 36, y - 20, x0 + tw + 36, y + 72), radius=46, outline=CY + (160,), width=2)
     x = x0
     for s, hl in segs: d.text((x, y), s, font=FS, fill=PK if hl else WH); x += FS.getlength(s)
     return im
@@ -54,9 +58,9 @@ def subtitle(text):
 # --- Cartes ---------------------------------------------------------------------
 def card(draw_fn, h):
     im = Image.new("RGBA", (W, H)); x0, y0, x1 = 1120, (1080 - h) // 2 - 70, 1800; y1 = y0 + h
-    sh = Image.new("RGBA", (W, H)); ImageDraw.Draw(sh).rounded_rectangle((x0, y0 + 16, x1, y1 + 16), 40, fill=(32, 3, 90, 90))
+    sh = Image.new("RGBA", (W, H)); ImageDraw.Draw(sh).rounded_rectangle((x0, y0 + 16, x1, y1 + 16), 40, fill=DK + (80,))
     im.alpha_composite(sh.filter(ImageFilter.GaussianBlur(24))); d = ImageDraw.Draw(im)
-    d.rounded_rectangle((x0, y0, x1, y1), 40, fill=(255, 255, 255, 215), outline=(68, 49, 141, 90), width=2)
+    d.rounded_rectangle((x0, y0, x1, y1), 40, fill=(255, 255, 255, 228), outline=CY + (110,), width=2)
     d.rounded_rectangle((x0 + 48, y0 + 48, x0 + 128, y0 + 56), 4, fill=PK)
     draw_fn(d, im, x0 + 48, y0 + 80)
     return im
@@ -81,9 +85,19 @@ def render(cfg, src, out_hd, out_720=None):
                         "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", out_720], check=True)
     return tmp
 
+def apercu(cfg, bg, t, out):
+    im = Image.open(bg).convert("RGBA").resize((W, H))
+    for h, a, b, fn in cfg["CARDS"]:
+        if a <= t <= b: im.alpha_composite(card(fn, h))
+    for a, b, txt in cfg["SUBS"]:
+        if a <= t <= b: im.alpha_composite(subtitle(txt))
+    im.convert("RGB").save(out)
+
 if __name__ == "__main__":
+    cfg = dict(f=f, VIO=VIO, DK=DK, PK=PK, CY=CY, WH=WH, chk=chk, crs=crs, arr=arr, pill=pill, logo=logo, Image=Image)
+    exec(open(sys.argv[1], encoding="utf-8").read(), cfg)
+    if sys.argv[2] == "--apercu":
+        apercu(cfg, sys.argv[3], float(sys.argv[4]), sys.argv[5]); print("aperçu ->", sys.argv[5]); sys.exit()
     cfg_path, src, out_hd = sys.argv[1:4]; out_720 = sys.argv[4] if len(sys.argv) > 4 else None
-    cfg = dict(f=f, VIO=VIO, DK=DK, PK=PK, WH=WH, chk=chk, crs=crs, arr=arr, pill=pill, logo=logo, Image=Image)
-    exec(open(cfg_path, encoding="utf-8").read(), cfg)
     tmp = render(cfg, src, out_hd, out_720)
     print("ok ·", tmp)
