@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Guide de l'utilisateur · AI Act · L'essentiel</title>
+<style>
+@font-face{font-family:'Poppins';font-weight:400;src:url(fonts/poppins-400.woff2) format('woff2')}
+@font-face{font-family:'Poppins';font-weight:500;src:url(fonts/poppins-500.woff2) format('woff2')}
+@font-face{font-family:'Poppins';font-weight:600;src:url(fonts/poppins-600.woff2) format('woff2')}
+@font-face{font-family:'Poppins';font-weight:700;src:url(fonts/poppins-700.woff2) format('woff2')}
+@font-face{font-family:'Titillium Web';font-weight:400;src:url(fonts/titilliumweb-400.woff2) format('woff2')}
+@font-face{font-family:'Titillium Web';font-weight:600;src:url(fonts/titilliumweb-600.woff2) format('woff2')}
+@font-face{font-family:'Titillium Web';font-weight:700;src:url(fonts/titilliumweb-700.woff2) format('woff2')}
+:root{--p:#44318D;--d:#20035A;--a:#D93F87;--l1:#ECE8F7;--l3:#F7F5FC;--line:#E4DFF2;--muted:#6B6585;--ok:#1F8A5B;--okbg:#E5F4EC}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:0}
+html,body{background:#8a86a0}
+body{font-family:'Poppins',sans-serif;font-size:10.4pt;line-height:1.55;color:var(--d);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;margin:0 auto 10mm;background:#fff;position:relative;overflow:hidden;padding:20mm 18mm 22mm;page-break-after:always;break-after:page}
+.page:last-child{page-break-after:auto;break-after:auto}
+@media print{html,body{background:#fff}.page{margin:0}}
+h1,h2,h3,h4{font-family:'Titillium Web',sans-serif;line-height:1.15;color:var(--d)}
+h2{font-size:25pt;font-weight:700;margin-bottom:4mm}
+h3{font-size:14pt;font-weight:700;margin:6mm 0 2.5mm}
+h4{font-size:11.5pt;font-weight:700;margin-bottom:1.5mm}
+p{margin-bottom:2.6mm}
+b,strong{font-weight:600}
+.eyebrow{font-size:8pt;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--a);margin-bottom:2mm}
+.lead{font-size:11.5pt;color:#3b3360}
+.muted{color:var(--muted)}
+.small{font-size:8.6pt}
+/* en-tête et pied de page */
+.ph{position:absolute;top:9mm;left:18mm;right:18mm;display:flex;justify-content:space-between;align-items:center;font-size:7.6pt;color:var(--muted);letter-spacing:.04em}
+.ph img{height:7mm}
+.pf{position:absolute;bottom:9mm;left:18mm;right:18mm;display:flex;justify-content:space-between;font-size:7.6pt;color:var(--muted);border-top:1px solid var(--line);padding-top:2.5mm}
+.pf b{color:var(--p)}
+/* couverture */
+.cover{padding:0;background:radial-gradient(120% 80% at 85% 10%,#6b4fc4 0%,#44318D 38%,#20035A 78%);color:#fff}
+.cover .in{position:absolute;inset:0;padding:22mm 20mm}
+.cover .logo{background:#fff;border-radius:5mm;padding:4mm 6mm;display:inline-block}
+.cover .logo img{height:13mm;display:block}
+.cover h1{color:#fff;font-size:44pt;font-weight:700;margin-top:52mm;line-height:1.02}
+.cover h1 span{color:#ffb3d6}
+.cover .sub{font-size:14pt;margin-top:6mm;max-width:140mm;color:#e9e3ff}
+.cover .chips{display:flex;gap:3mm;margin-top:10mm;flex-wrap:wrap}
+.cover .chips span{border:1px solid rgba(255,255,255,.35);border-radius:20mm;padding:1.6mm 4.5mm;font-size:9pt;background:rgba(255,255,255,.08)}
+.cover .shot{position:absolute;right:-24mm;bottom:-14mm;width:136mm;border-radius:4mm;transform:rotate(-4deg);border:2px solid rgba(255,255,255,.45)}
+.cover .foot{position:absolute;left:20mm;bottom:16mm;font-size:9pt;color:#d9d0ff}
+.cover .glow{position:absolute;width:120mm;height:120mm;border-radius:50%;background:radial-gradient(circle,rgba(217,63,135,.55),transparent 65%);left:-40mm;bottom:-40mm}
+/* éléments */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:3.5mm}
+.card{border:1px solid var(--line);border-radius:4mm;padding:4.5mm 5mm;background:#fff;break-inside:avoid}
+.card.soft{background:var(--l3)}
+.card.dark{background:var(--d);color:#fff;border:0}
+.card.dark h4{color:#fff}
+.stat{border-radius:4mm;padding:4mm;background:var(--l3);border:1px solid var(--line)}
+.stat b{display:block;font-family:'Titillium Web';font-size:24pt;line-height:1;color:var(--p)}
+.stat span{font-size:8.6pt;color:var(--muted)}
+.stat.pk b{color:var(--a)}
+.shot{width:100%;border-radius:3mm;border:1px solid #d6cfee;display:block}
+.cap{font-size:8pt;color:var(--muted);margin-top:2mm;text-align:center}
+.toc{margin-top:8mm}
+.toc div{display:flex;align-items:baseline;gap:4mm;padding:3.2mm 0;border-bottom:1px solid var(--line);font-size:11.5pt}
+.toc div i{font-style:normal;font-family:'Titillium Web';font-weight:700;color:var(--a);width:9mm}
+.toc div span{margin-left:auto;color:var(--muted);font-size:9.5pt}
+.lvl{display:grid;grid-template-columns:16mm 1fr;gap:4mm;align-items:start;padding:4.5mm;border-radius:4mm;border:1px solid var(--line);margin-bottom:3.5mm;break-inside:avoid}
+.lvl .n{width:16mm;height:16mm;border-radius:3.5mm;background:var(--p);color:#fff;font-family:'Titillium Web';font-weight:700;font-size:20pt;display:grid;place-items:center}
+.lvl:nth-child(2n) .n{background:var(--a)}
+.lvl h4{font-size:12.5pt;margin:0}
+.lvl h4 small{font-family:'Poppins';font-weight:500;font-size:8.5pt;color:var(--a);letter-spacing:.08em;text-transform:uppercase;margin-right:2mm}
+.lvl p{margin:1mm 0 1.5mm;color:#3b3360}
+.lvl .mods{display:flex;gap:2mm;flex-wrap:wrap}
+.lvl .mods span{font-size:8pt;background:var(--l1);color:var(--p);border-radius:2mm;padding:.8mm 2.5mm;font-weight:500}
+.steps{display:grid;gap:2.6mm}
+.step{display:grid;grid-template-columns:9mm 1fr auto;gap:3.5mm;align-items:start;padding:3mm 4mm;border-radius:3.5mm;background:var(--l3);border:1px solid var(--line)}
+.step i{font-style:normal;width:9mm;height:9mm;border-radius:50%;background:var(--p);color:#fff;display:grid;place-items:center;font-family:'Titillium Web';font-weight:700;font-size:11pt}
+.step b{display:block;font-size:10.5pt}
+.step span{font-size:9pt;color:#3b3360}
+.step em{font-style:normal;font-size:8.2pt;color:var(--p);background:var(--l1);border-radius:2mm;padding:.6mm 2.2mm;white-space:nowrap;align-self:center}
+.note{display:flex;gap:3mm;padding:3.5mm 4.5mm;border-radius:3.5mm;background:#FDF0F6;border-left:3px solid var(--a);font-size:9.4pt;margin-top:4mm;break-inside:avoid}
+.note.ok{background:var(--okbg);border-color:var(--ok)}
+.note b{white-space:nowrap}
+ul.ck{list-style:none;display:grid;gap:1.8mm}
+ul.ck li{padding-left:6mm;position:relative}
+ul.ck li:before{content:'';position:absolute;left:0;top:2.1mm;width:2.4mm;height:2.4mm;border-radius:50%;background:var(--a)}
+ol.num{padding-left:5mm;display:grid;gap:1.6mm}
+table{width:100%;border-collapse:collapse;font-size:9pt}
+th{text-align:left;font-size:7.6pt;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:2mm 2.5mm;border-bottom:2px solid var(--l1)}
+td{padding:2.3mm 2.5mm;border-bottom:1px solid var(--line);vertical-align:top}
+tr{break-inside:avoid}
+.persona{display:flex;gap:2.5mm;flex-wrap:wrap;margin-top:2mm}
+.persona span{font-size:8.6pt;border:1px solid var(--line);border-radius:10mm;padding:1mm 3mm;background:#fff}
+.persona span b{color:var(--p)}
+.faq h4{margin-top:4mm;color:var(--p)}
+.faq p{margin-bottom:1mm}
+.kbd{font-family:'Poppins';font-size:8pt;border:1px solid var(--line);border-bottom-width:2px;border-radius:1.5mm;padding:0 1.5mm;background:#fff}
+.back{background:var(--d);color:#fff;padding:0}
+.back .in{position:absolute;inset:0;padding:30mm 22mm;display:flex;flex-direction:column;justify-content:center}
+.back h2{color:#fff;font-size:30pt}
+.back p{color:#ddd5ff;font-size:12pt;max-width:140mm}
+.back .logo{background:#fff;border-radius:5mm;padding:4mm 6mm;display:inline-block;margin-bottom:14mm;align-self:flex-start}
+.back .logo img{height:12mm;display:block}
+</style>
+</head>
+<body>
+
+<!-- 1. COUVERTURE -->
+<section class="page cover">
+  <div class="glow"></div>
+  <div class="in">
+    <div class="logo"><img src="img/logo-ba.png" alt="Blockchain AkademIA"></div>
+    <h1>Guide de<br>l'utilisateur<br><span>AI Act · L'essentiel</span></h1>
+    <p class="sub">La formation à la maîtrise de l'IA exigée par l'article 4 du règlement européen sur l'intelligence artificielle, en 4 niveaux courts et concrets.</p>
+    <div class="chips"><span>4 niveaux · 8 modules</span><span>8 vidéos sous-titrées</span><span>Web et Moodle (SCORM 1.2)</span><span>Évaluation finale et attestation</span><span>Démo en anglais</span></div>
+  </div>
+  <img class="shot" src="img/accueil.png" alt="">
+  <div class="foot">Version 2.0 · contenu à jour au 12 octobre 2026</div>
+</section>
+
+<!-- 2. SOMMAIRE + EN BREF -->
+<section class="page">
+  <div class="ph"><img src="img/logo-ba.png" alt=""><span>Guide de l'utilisateur · AI Act · L'essentiel</span></div>
+  <p class="eyebrow">Sommaire</p>
+  <h2>Ce que vous trouverez dans ce guide</h2>
+  <div class="toc">
+    <div><i>01</i>Le produit en bref<span>p. 3</span></div>
+    <div><i>02</i>Le parcours en 4 niveaux<span>p. 4</span></div>
+    <div><i>03</i>Comment se déroule un niveau<span>p. 5</span></div>
+    <div><i>04</i>S'entraîner et valider<span>p. 7</span></div>
+    <div><i>05</i>L'espace de l'apprenant<span>p. 8</span></div>
+    <div><i>06</i>Déployer la formation : web ou Moodle<span>p. 9</span></div>
+    <div><i>07</i>Suivi, preuves et données<span>p. 10</span></div>
+    <div><i>08</i>Accessibilité et configuration requise<span>p. 11</span></div>
+    <div><i>09</i>Version anglaise (démonstration)<span>p. 12</span></div>
+    <div><i>10</i>Questions fréquentes<span>p. 13</span></div>
+  </div>
+  <h3 style="margin-top:12mm">En bref</h3>
+  <div class="grid4">
+    <div class="stat"><b>4</b><span>niveaux progressifs, de la découverte aux réflexes</span></div>
+    <div class="stat pk"><b>≈ 25 min</b><span>par niveau, pour s'intégrer dans une journée de travail</span></div>
+    <div class="stat"><b>8</b><span>fiches pratiques à télécharger en PDF</span></div>
+    <div class="stat pk"><b>12</b><span>scénarios pour s'entraîner en situation</span></div>
+    <div class="stat pk"><b>48</b><span>questions de validation, tirées au hasard</span></div>
+    <div class="stat"><b>80 %</b><span>seuil de réussite, niveau par niveau</span></div>
+    <div class="stat pk"><b>5</b><span>paquets SCORM 1.2 prêts pour Moodle</span></div>
+    <div class="stat"><b>0</b><span>donnée envoyée à un service tiers</span></div>
+  </div>
+  <div class="pf"><span>Blockchain AkademIA</span><b>2</b></div>
+</section>
+
+<!-- 3. LE PRODUIT -->
+<section class="page">
+  <div class="ph"><img src="img/logo-ba.png" alt=""><span>01 · Le produit en bref</span></div>
+  <p class="eyebrow">01 · Le produit en bref</p>
+  <h2>Former vos équipes à l'IA, simplement et avec des preuves</h2>
+  <p class="lead">Depuis le 2 février 2025, l'article 4 de l'AI Act demande aux entreprises qui utilisent l'IA de prendre des mesures pour que les personnes qui s'en servent comprennent ce qu'elles font. <b>AI Act · L'essentiel</b> est une formation en ligne clé en main qui répond à cette obligation.</p>
+  <div class="grid2" style="margin-top:6mm">
+    <div class="card">
+      <h4>Pour qui ?</h4>
+      <p class="small muted" style="margin-bottom:2mm">Tous ceux qui utilisent l'IA pour le compte de l'entreprise. Chacun indique son métier, et la plateforme met en avant ce qui le concerne.</p>
+      <ul class="ck small">
+        <li>Tous les salariés, intérimaires, stagiaires, freelances en régie</li>
+        <li>Développeurs, data, intégrateurs</li>
+        <li>RH et managers</li>
+        <li>Commerciaux, avant-vente, chefs de projet</li>
+        <li>Direction, juridique, DPO</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Ce que la formation apporte</h4>
+      <ul class="ck small">
+        <li><b>Comprendre</b> : reconnaître un système d'IA, les rôles et les niveaux de risque</li>
+        <li><b>Appliquer</b> : transparence, lignes rouges, haut risque RH, protection des données</li>
+        <li><b>Réagir</b> : incidents, sanctions, autorités compétentes au Luxembourg</li>
+        <li><b>Prouver</b> : scores, rapports et attestation de suivi pour votre registre interne</li>
+      </ul>
+    </div>
+  </div>
+  <h3>Une histoire qui sert de fil rouge</h3>
+  <p>Le cours suit <b>Nexalis</b>, une entreprise de services numériques de 180 salariés installée à Belval. Chaque notion part d'une situation vécue par ses équipes : une fonction d'IA apparue après une mise à jour, un chatbot livré à une banque, un tri de 800 candidatures, un vendredi soir chargé…</p>
+  <div class="persona"><span><b>Léa</b> · cheffe de projet</span><span><b>Claire</b> · DPO</span><span><b>Julien</b> · manager</span><span><b>Paul</b> · développeur freelance</span><span><b>Karim</b> · avant-vente</span><span><b>Tom</b> · développeur</span><span><b>Sofia</b> · DRH</span><span><b>Nora</b> · consultante</span></div>
+  <div class="note ok"><b>À jour</b><span>Le contenu intègre l'Omnibus sur l'IA de 2026. La date de mise à jour est affichée en permanence en haut de la plateforme et sur chaque document imprimé.</span></div>
+  <div class="note"><b>Bon à savoir</b><span>Aucun certificat officiel n'est exigé par l'article 4. Un registre interne qui indique qui a été formé, quand et avec quel résultat suffit : la plateforme vous fournit ces éléments.</span></div>
+  <div class="pf"><span>Blockchain AkademIA</span><b>3</b></div>
+</section>
+
+<!-- 4. LE PARCOURS -->
+<section class="page">
+  <div class="ph"><img src="img/logo-ba.png" alt=""><span>02 · Le parcours en 4 niveaux</span></div>
+  <p class="eyebrow">02 · Le parcours</p>
+  <h2>4 niveaux, du plus simple au plus concret</h2>
+  <p class="lead" style="margin-bottom:6mm">Chaque niveau se débloque quand le précédent est validé. Chacun contient 2 modules, 2 vidéos, 2 fiches pratiques, 3 scénarios et un quiz de validation.</p>
+  <div class="lvl"><div class="n">1</div><div><h4><small>Découvrir</small>Où est l'IA ?</h4><p>Reconnaître un système d'IA, savoir qui est concerné et ce que change l'Omnibus de 2026.</p><div class="mods"><span>Module 1 · Reconnaître une IA</span><span>Module 2 · Se former : l'article 4</span></div></div></div>
+  <div class="lvl"><div class="n">2</div><div><h4><small>Identifier</small>Qui est responsable ?</h4><p>Distinguer fournisseur et déployeur, éviter de devenir fournisseur sans le vouloir, appliquer la transparence.</p><div class="mods"><span>Module 1 · Fournisseur ou déployeur</span><span>Module 2 · Modèles et transparence</span></div></div></div>
+  <div class="lvl"><div class="n">3</div><div><h4><small>Repérer</small>Les lignes rouges</h4><p>Connaître les pratiques interdites, les deepfakes et le haut risque RH, avec le droit du travail luxembourgeois.</p><div class="mods"><span>Module 1 · Les pratiques interdites</span><span>Module 2 · Le haut risque RH</span></div></div></div>
+  <div class="lvl"><div class="n">4</div><div><h4><small>Agir</small>Nos réflexes</h4><p>Protéger les données, réagir à un incident, connaître les sanctions et les autorités au Luxembourg.</p><div class="mods"><span>Module 1 · Données et RGPD</span><span>Module 2 · Incidents, sanctions, autorités</span></div></div></div>
+  <div class="card dark" style="margin-top:5mm;display:grid;grid-template-columns:auto 1fr;gap:5mm;align-items:center">
+    <div style="font-family:'Titillium Web';font-weight:700;font-size:26pt;color:#ffb3d6">Final</div>
+    <div><h4>Évaluation finale</h4><p class="small" style="margin:0;color:#ddd5ff">Une fois les 4 niveaux validés : 20 questions sur l'ensemble du parcours, seuil de 80 %. Son résultat figure sur l'attestation de suivi.</p></div>
+  </div>
+  <div class="pf"><span>Blockchain AkademIA</span><b>4</b></div>
+</section>
+
+<!-- 5. DÉROULÉ D'UN NIVEAU -->
+<section class="page">
+  <div class="ph"><img src="img/logo-ba.png" alt=""><span>03 · Comment se déroule un niveau</span></div>
+  <p class="eyebrow">03 · Un niveau, étape par étape</p>
+  <h2>Comprendre, s'entraîner, valider</h2>
+  <div class="steps" style="margin-top:4mm">
+    <div class="step"><i>1</i><div><b>Vidéo de présentation</b><span>Chaque module s'ouvre sur une vidéo sous-titrée qui pose le sujet et présente le personnage suivi.</span></div><em>≈ 1 min 15</em></div>
+    <div class="step"><i>2</i><div><b>Séance</b><span>Mises en situation, questions, explications et extraits d'articles de loi, dans l'ordre de l'histoire. Chaque réponse est corrigée et expliquée tout de suite.</span></div><em>≈ 25 min</em></div>
+    <div class="step"><i>3</i><div><b>Fiches pratiques</b><span>Deux fiches par niveau, débloquées au fil de la séance. En PDF, chacune devient un document de 3 pages qui reprend tout le module.</span></div><em>1 min 30</em></div>
+    <div class="step"><i>4</i><div><b>Scénarios</b><span>Trois cas concrets par niveau : on choisit une réaction et on découvre ses conséquences, avec la bonne pratique et sa base légale.</span></div><em>7 min</em></div>
+    <div class="step"><i>5</i><div><b>Quiz de validation</b><span>6 questions tirées au hasard parmi 12. Il faut 5 bonnes réponses sur 6. Tentatives illimitées, avec un nouveau tirage à chaque fois.</span></div><em>5 min</em></div>
+    <div class="step"><i>6</i><div><b>Récap &amp; rapport</b><span>Une fiche récap des points clés et un rapport détaillé de toutes les réponses, à télécharger en PDF.</span></div><em>3 min</em></div>
+  </div>
+  <div class="grid2" style="margin-top:6mm">
+    <div><img class="shot" src="img/video.png" alt=""><p class="cap">La vidéo de présentation et les objectifs du module</p></div>
+    <div><img class="shot" src="img/question.png" alt=""><p class="cap">Une question de la séance, corrigée et expliquée</p></div>
+  </div>
+  <div class="note ok"><b>Validation d'un niveau</b><span>Au moins <b>80 %</b> de bonnes réponses sur la séance et les scénarios, <b>et</b> le quiz de validation réussi. Les questions ratées peuvent être retentées.</span></div>
+  <div class="pf"><span>Blockchain AkademIA</span><b>5</b></div>
+</section>
+
+<!-- 6. FICHES -->
+<section class="page">
+  <div class="ph"><img src="img/logo-ba.png" alt=""><span>03 · Comment se déroule un niveau</span></div>
+  <p class="eyebrow">03 · Un niveau, étape par étape</p>
+  <h2>Des fiches pratiques à garder</h2>
+  <p class="lead">Les 8 fiches pratiques résument l'essentiel en un coup d'œil : niveaux de risque, calendrier, rôles, transparence, lignes rouges, haut risque RH, autres textes, sanctions.</p>
+  <img class="shot" src="img/fiches.png" alt="" style="margin-top:5mm">
+  <p class="cap">La fiche pratique 1 dans la plateforme</p>
+  <h3>Le PDF : une vraie fiche d'information</h3>
+  <div class="grid2">
+    <div class="card soft"><ul class="ck small">
+      <li>Les objectifs du module et la date de mise à jour</li>
+      <li>La synthèse visuelle en un coup d'œil</li>
+      <li>Le cours en détail : explications, extraits de loi, points à retenir</li>
+    </ul></div>
+    <div class="card soft"><ul class="ck small">
+      <li>Tous les cas pratiques du module</li>
+      <li>Les questions clés avec leurs réponses expliquées</li>
+      <li>Les textes cités et les contacts utiles (DPO, CNPD, AI Act Service Desk)</li>
+    </ul></div>
+  </div>
+  <div class="note"><b>Astuce</b><span>Les fiches restent accessibles après la formation, dans le menu <b>Fiches pratiques</b> de chaque niveau et sur la page <b>Ressources</b>.</span></div>
+  <div class="pf"><span>Blockchain AkademIA</span><b>6</b></div>
+</section>
+
+<!-- 7. S'ENTRAÎNER ET VALIDER -->
+<section class="page">
+  <div class="ph"><img src="img/logo-ba.png" alt=""><span>04 · S'entraîner et valider</span></div>
+  <p class="eyebrow">04 · S'entraîner et valider</p>
+  <h2>Des scénarios, un quiz et un rapport</h2>
+  <div class="grid2" style="margin-top:3mm">
+    <div><img class="shot" src="img/scenarios.png" alt=""><p class="cap">Un scénario : choisir sa réaction et en voir les conséquences</p></div>
+    <div><img class="shot" src="img/quiz.png" alt=""><p class="cap">Le quiz de validation : 6 questions tirées au hasard</p></div>
+  </div>
+  <div class="grid2" style="margin-top:4mm">
+    <div class="card"><h4>Les scénarios</h4><p class="small" style="margin:0">Chaque réponse est classée « bonne réponse », « à nuancer » ou « à éviter », avec la conséquence concrète, la bonne pratique et l'article concerné.</p></div>
+    <div class="card"><h4>Le quiz de validation</h4><p class="small" style="margin:0">L'ordre des réponses change à chaque tentative, pour vérifier la compréhension plutôt que la mémoire. La correction complète s'affiche après chaque tentative.</p></div>
+  </div>
+  <div class="grid2" style="margin-top:4mm;align-items:start">
+    <div><img class="shot" src="img/recap.png" alt=""><p class="cap">Le rapport de niveau, téléchargeable en PDF</p></div>
+    <div class="card soft"><h4>Le rapport de niveau</h4><ul class="ck small">
+      <li>Score global et score par thème</li>
+      <li>Chaque réponse donnée, la bonne réponse et l'explication</li>
+      <li>La trace de formation : apprenant, date, version du contenu, score, statut</li>
+    </ul></div>
+  </div>
+  <div class="pf"><span>Blockchain AkademIA</span><b>7</b></div>
+</section>
+
+<!-- 8. ESPACE APPRENANT -->
+<section class="page">
+  <div class="ph"><img src="img/logo-ba.png" alt=""><span>05 · L'espace de l'apprenant</span></div>
+  <p class="eyebrow">05 · L'espace de l'apprenant</p>
+  <h2>Tout est à portée de main</h2>
+  <div class="grid2" style="margin-top:3mm">
+    <div><img class="shot" src="img/accueil.png" alt=""><p class="cap">Le tableau de bord</p></div>
+    <div><img class="shot" src="img/connaissances.png" alt=""><p class="cap">Mes connaissances : le niveau de maîtrise par notion</p></div>
+  </div>
+  <table style="margin-top:4mm">
+    <tr><th style="width:34mm">Espace</th><th>À quoi il sert</th></tr>
+    <tr><td><b>Tableau de bord</b></td><td>La progression des 4 niveaux et un accès direct pour reprendre là où l'on s'était arrêté.</td></tr>
+    <tr><td><b>Connaissances</b></td><td>Le taux de maîtrise de chaque notion, calculé à partir des réponses, avec un lien pour la retravailler.</td></tr>
+    <tr><td><b>Ressources</b></td><td>Les fiches pratiques, les textes officiels et des ressources externes pour aller plus loin.</td></tr>
+    <tr><td><b>Mon profil</b></td><td>Nom, métier, progression détaillée, attestation de suivi en PDF et options de confort de lecture. On y accède par la carte en bas du menu.</td></tr>
+    <tr><td><b>Recherche</b></td><td>Retrouver une notion ou un article en un instant, avec <span class="kbd">⌘K</span> ou <span class="kbd">Ctrl K</span>.</td></tr>
+    <tr><td><b>Rappels</b></td><td>Des rappels à J+7 et J+30 après la validation d'un niveau, sous forme d'affirmations à vérifier (vrai, faux ou ça dépend), pour ancrer les acquis.</td></tr>
+  </table>
+  <div class="note"><b>Plus de place</b><span>Sur ordinateur, le bouton en haut à gauche masque le menu pour afficher le cours en plein écran. Le choix est mémorisé.</span></div>
+  <div class="pf"><span>Blockchain AkademIA</span><b>8</b></div>
+</section>
+
+<!-- 9. DÉPLOYER -->
+<section class="page">
+  <div class="ph"><img src="img/logo-ba.png" alt=""><span>06 · Déployer la formation</span></div>
+  <p class="eyebrow">06 · Déployer la formation</p>
+  <h2>Deux façons de diffuser</h2>
+  <div class="grid2" style="margin-top:4mm">
+    <div class="card">
+      <h4>Version web</h4>
+      <p class="small">Un fichier <b>AI_Act_BA.html</b> et un dossier <b>videos</b>, à garder côte à côte. Rien à installer : on ouvre le fichier dans un navigateur.</p>
+      <ul class="ck small"><li>Idéal pour une démonstration ou un petit groupe</li><li>Bouton FR | EN : niveau 1 disponible en anglais</li><li>Les 4 niveaux et l'évaluation finale en un seul fichier</li><li>Progression enregistrée dans le navigateur de chaque personne</li></ul>
+    </div>
+    <div class="card">
+      <h4>Moodle (SCORM 1.2)</h4>
+      <p class="small">Un paquet par niveau, plus un paquet pour l'évaluation finale. Les vidéos sont incluses dans chaque paquet.</p>
+      <ul class="ck small"><li>Suivi centralisé par votre plateforme de formation</li><li>Scores, statuts et réponses remontés automatiquement</li><li>Reprise là où l'apprenant s'était arrêté</li></ul>
+    </div>
+  </div>
+  <h3>Installer dans Moodle</h3>
+  <ol class="num">
+    <li>Dans le cours : <b>Ajouter une activité</b> › <b>Paquetage SCORM</b>, puis déposer le zip du niveau 1.</li>
+    <li>Régler l'activité : note « la plus haute », tentatives illimitées, achèvement « doit obtenir le statut Réussi », affichage dans la fenêtre courante.</li>
+    <li>Répéter pour les niveaux 2, 3 et 4, puis pour <b>AI_Act_BA_Evaluation_finale_SCORM12.zip</b>.</li>
+    <li>Enchaîner les activités avec <b>Restreindre l'accès</b> › <b>Achèvement d'activité</b> de l'activité précédente.</li>
+    <li>Faire un essai complet avec un compte test avant d'ouvrir la formation aux équipes.</li>
+  </ol>
+  <table style="margin-top:5mm">
+    <tr><th>Paquet</th><th>Contenu</th><th>Taille</th></tr>
+    <tr><td>Niveau 1 à 4</td><td>Le niveau complet, ses 2 vidéos et ses fiches</td><td>17 à 19 Mo chacun</td></tr>
+    <tr><td>Évaluation finale</td><td>20 questions sur les 4 niveaux</td><td>&lt; 1 Mo</td></tr>
+  </table>
+  <div class="pf"><span>Blockchain AkademIA</span><b>9</b></div>
+</section>
+
+<!-- 10. SUIVI ET DONNÉES -->
+<section class="page">
+  <div class="ph"><img src="img/logo-ba.png" alt=""><span>07 · Suivi, preuves et données</span></div>
+  <p class="eyebrow">07 · Suivi, preuves et données</p>
+  <h2>Pouvoir prouver la formation</h2>
+  <p class="lead">L'article 4 n'exige pas de certificat, mais vous devez pouvoir montrer ce que vous avez mis en place. La plateforme produit les éléments de votre registre interne.</p>
+  <div class="grid2" style="margin-top:5mm;align-items:start">
+    <div><img class="shot" src="img/profil.png" alt=""><p class="cap">Le profil : progression, trace de formation, attestation</p></div>
+    <div class="card soft">
+      <h4>Ce que Moodle reçoit</h4>
+      <ul class="ck small">
+        <li>Le statut réussi ou échoué et la note sur 100</li>
+        <li>Chaque réponse (rapport « Interactions »)</li>
+        <li>La page en cours, pour la reprise</li>
+        <li>Le temps de session</li>
+        <li>La progression complète</li>
+      </ul>
+      <p class="small muted" style="margin:2.5mm 0 0">Pour un niveau, la note transmise est la plus basse entre l'entraînement (séance et scénarios) et le meilleur quiz.</p>
+    </div>
+  </div>
+  <div class="grid3" style="margin-top:5mm">
+    <div class="card"><h4>Attestation de suivi</h4><p class="small" style="margin:0">Un PDF au nom de l'apprenant : statut et score de chaque niveau, résultat de l'évaluation finale, dates, temps passé, version du contenu.</p></div>
+    <div class="card"><h4>Rapports de niveau</h4><p class="small" style="margin:0">Le détail de chaque réponse, à archiver avec le registre des formations.</p></div>
+    <div class="card"><h4>Version du contenu</h4><p class="small" style="margin:0">Chaque document indique la date de mise à jour du contenu, pour savoir précisément sur quelle version chacun a été formé.</p></div>
+  </div>
+  <div class="note ok"><b>Données personnelles</b><span>La plateforme n'envoie aucune donnée à un service tiers. En version web, la progression reste dans le navigateur de l'apprenant. En version Moodle, elle est stockée dans votre Moodle.</span></div>
+  <div class="note"><b>Option sur demande</b><span><b>Temps régulé</b> : chaque page de cours reste affichée au moins un tiers du temps indiqué et chaque vidéo doit être vue en entier avant de passer à la suite. Aucun minimum sur les questions et les mises en situation.</span></div>
+  <div class="pf"><span>Blockchain AkademIA</span><b>10</b></div>
+</section>
+
+<!-- 11. ACCESSIBILITÉ -->
+<section class="page">
+  <div class="ph"><img src="img/logo-ba.png" alt=""><span>08 · Accessibilité et configuration requise</span></div>
+  <p class="eyebrow">08 · Accessibilité et configuration</p>
+  <h2>Pensée pour tout le monde</h2>
+  <div class="grid2" style="margin-top:4mm">
+    <div class="card"><h4>Confort et accessibilité</h4><ul class="ck small">
+      <li>Vidéos avec sous-titres incrustés, lisibles partout</li>
+      <li>Trois tailles de texte : normale, grande, très grande</li>
+      <li>Option pour réduire les animations</li>
+      <li>Navigation au clavier et lien d'accès direct au contenu</li>
+      <li>Documents PDF propres, sans élément coupé entre deux pages</li>
+    </ul></div>
+    <div class="card"><h4>Configuration requise</h4><ul class="ck small">
+      <li>Un navigateur récent : Chrome, Edge, Firefox ou Safari</li>
+      <li>Ordinateur recommandé ; tablette et mobile possibles</li>
+      <li>Haut-parleurs ou casque pour les vidéos (les sous-titres permettent de s'en passer)</li>
+      <li>Aucune installation, aucun compte à créer en version web</li>
+      <li>Pour Moodle : prise en charge des paquets SCORM 1.2</li>
+    </ul></div>
+  </div>
+  <h3>Imprimer et télécharger</h3>
+  <table>
+    <tr><th style="width:48mm">Document</th><th>Où le trouver</th></tr>
+    <tr><td><b>Fiches pratiques</b> (8)</td><td>Dans la séance, le menu <b>Fiches pratiques</b> et la page <b>Ressources</b> : bouton <b>PDF</b>.</td></tr>
+    <tr><td><b>Fiche récap</b> (1 par niveau)</td><td>Page <b>Récap &amp; rapport</b>, onglet « Fiche récap ».</td></tr>
+    <tr><td><b>Rapport de niveau</b></td><td>Page <b>Récap &amp; rapport</b>, onglet « Rapport de niveau ».</td></tr>
+    <tr><td><b>Attestation de suivi</b></td><td><b>Mon profil</b>, et page de l'évaluation finale une fois réussie.</td></tr>
+  </table>
+  <p class="small muted" style="margin-top:3mm">Les documents s'ouvrent dans la fenêtre d'impression du navigateur : choisir « Enregistrer au format PDF » comme destination.</p>
+  <div class="pf"><span>Blockchain AkademIA</span><b>11</b></div>
+</section>
+
+<!-- 12. VERSION ANGLAISE -->
+<section class="page">
+  <div class="ph"><img src="img/logo-ba.png" alt=""><span>09 · Version anglaise (démonstration)</span></div>
+  <p class="eyebrow">09 · Version anglaise</p>
+  <h2>Montrer la formation en anglais</h2>
+  <p class="lead">Un bouton <b>FR | EN</b>, en haut de chaque page de la version web, fait passer la plateforme en anglais. Cette version de démonstration couvre aujourd'hui le <b>niveau 1 complet</b>.</p>
+  <div class="grid2" style="margin-top:4mm">
+    <div><img class="shot" src="img/en_accueil.png" alt=""><p class="cap">Le tableau de bord en anglais</p></div>
+    <div><img class="shot" src="img/en_question.png" alt=""><p class="cap">Une question de la séance, corrigée en anglais</p></div>
+  </div>
+  <div class="grid2" style="margin-top:5mm">
+    <div class="card"><h4>Disponible en anglais</h4><ul class="ck small">
+      <li>Le niveau 1 entier : séance, fiches pratiques et leurs PDF, scénarios, quiz de validation, récap et rapport</li>
+      <li>Les 2 vidéos du niveau 1, avec sous-titres et illustrations en anglais</li>
+      <li>Le tableau de bord, le menu et la page « My profile », avec l'attestation de suivi</li>
+    </ul></div>
+    <div class="card soft"><h4>Bon à savoir</h4><ul class="ck small">
+      <li>Le français reste la langue par défaut : rien ne change tant qu'on ne clique pas sur EN</li>
+      <li>Le choix de langue est mémorisé ; la progression est commune aux deux langues</li>
+      <li>En anglais, les niveaux 2 à 4, l'évaluation finale, Connaissances et Ressources sont grisés</li>
+      <li>Les paquets Moodle (SCORM) restent en français</li>
+    </ul></div>
+  </div>
+  <div class="note"><b>Sur demande</b><span>La traduction peut être étendue aux 4 niveaux et aux paquets Moodle. Les termes juridiques reprennent ceux de la version anglaise officielle du règlement (AI system, deployer, AI literacy…).</span></div>
+  <div class="pf"><span>Blockchain AkademIA</span><b>12</b></div>
+</section>
+
+<!-- 13. FAQ -->
+<section class="page faq">
+  <div class="ph"><img src="img/logo-ba.png" alt=""><span>10 · Questions fréquentes</span></div>
+  <p class="eyebrow">10 · Questions fréquentes</p>
+  <h2>Les réponses aux questions courantes</h2>
+  <h4>La vidéo affiche « bientôt disponible ».</h4>
+  <p>En version web, le dossier <b>videos</b> doit se trouver à côté du fichier <b>AI_Act_BA.html</b>, avec ses noms de fichiers d'origine. Le plus simple : transmettre et décompresser le dossier complet.</p>
+  <h4>Un niveau est verrouillé.</h4>
+  <p>Chaque niveau s'ouvre quand le précédent est validé : 80 % sur la séance et les scénarios, et le quiz de validation réussi. Dans Moodle, l'ordre se règle avec « Restreindre l'accès ».</p>
+  <h4>J'ai raté le quiz de validation.</h4>
+  <p>Les tentatives sont illimitées. Chaque nouvelle tentative tire d'autres questions et mélange l'ordre des réponses. La correction de la tentative précédente reste consultable.</p>
+  <h4>Mon score est sous 80 %.</h4>
+  <p>Sur la page <b>Récap &amp; rapport</b>, le bouton « Retenter les questions ratées » permet de reprendre uniquement les questions concernées.</p>
+  <h4>J'ai perdu ma progression.</h4>
+  <p>En version web, la progression est liée au navigateur et à l'ordinateur utilisés. Un autre navigateur, une navigation privée ou un effacement des données repartent de zéro. Dans Moodle, la progression suit le compte de l'apprenant.</p>
+  <h4>Un texte s'imprime en haut des pages PDF.</h4>
+  <p>Certains navigateurs ajoutent leurs propres en-têtes. Dans la fenêtre d'impression, décocher « En-têtes et pieds de page ».</p>
+  <h4>Le contenu sera-t-il mis à jour ?</h4>
+  <p>Oui. L'AI Act s'applique par étapes jusqu'en 2028. Le contenu est daté et versionné ; les prochaines révisions sont prévues début 2027, puis avant décembre 2027.</p>
+  <h4>Comment passer la plateforme en anglais ?</h4>
+  <p>Cliquer sur <b>EN</b> en haut de la page (version web). Cliquer sur <b>FR</b> pour revenir au français.</p>
+  <div class="pf"><span>Blockchain AkademIA</span><b>13</b></div>
+</section>
+
+<!-- 13. DOS -->
+<section class="page back">
+  <div class="in">
+    <div class="logo"><img src="img/logo-ba.png" alt="Blockchain AkademIA"></div>
+    <h2>Une question, un besoin ?</h2>
+    <p>Votre interlocuteur Blockchain AkademIA vous accompagne pour le déploiement de la formation, son adaptation à votre organisation et ses mises à jour.</p>
+    <p style="margin-top:10mm;font-size:9pt;color:#b9adf0">AI Act · L'essentiel · Guide de l'utilisateur · Version 2.0 · Contenu à jour au 12 octobre 2026</p>
+  </div>
+</section>
+
+</body>
+</html>

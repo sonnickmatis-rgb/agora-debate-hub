@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Passation · AI Act · L'essentiel</title>
+<style>
+@font-face{font-family:'Poppins';font-weight:400;src:url(../src/fonts/poppins-400.woff2)}
+@font-face{font-family:'Poppins';font-weight:600;src:url(../src/fonts/poppins-600.woff2)}
+@font-face{font-family:'Titillium Web';font-weight:700;src:url(../src/fonts/titilliumweb-700.woff2)}
+:root{--p:#44318D;--d:#20035A;--a:#D93F87;--l1:#ECE8F7;--l3:#F7F5FC;--line:#E4DFF2;--muted:#6B6585;--ok:#1F8A5B;--okbg:#E7F5EE;--warn:#FDF0F6}
+*{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:16mm 15mm 18mm;@bottom-left{content:"Passation · AI Act · L'essentiel · 23 octobre 2026";font:7.5pt Poppins;color:#6B6585}@bottom-right{content:counter(page) " / " counter(pages);font:7.5pt Poppins;color:#44318D}}
+@page:first{margin:0;@bottom-left{content:none}@bottom-right{content:none}}
+body{font-family:Poppins,sans-serif;font-size:9.6pt;line-height:1.55;color:var(--d);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3{font-family:'Titillium Web',sans-serif;line-height:1.15}
+h2{font-size:17pt;color:var(--p);margin:2mm 0 4mm;padding-bottom:2mm;border-bottom:2px solid var(--l1);break-after:avoid}
+h3{font-size:12pt;margin:5mm 0 2mm;break-after:avoid}
+p{margin-bottom:2mm}
+b{font-weight:600}
+code,.k{font-family:Menlo,monospace;font-size:8.3pt;background:var(--l3);border:1px solid var(--line);border-radius:1.5mm;padding:0 1.2mm}
+pre{font-family:Menlo,monospace;font-size:8pt;background:var(--d);color:#fff;border-radius:3mm;padding:3mm 4mm;margin:2mm 0 3mm;white-space:pre-wrap;break-inside:avoid}
+section{break-before:page}
+section.first{break-before:auto}
+.cover{height:297mm;background:radial-gradient(120% 80% at 85% 10%,#6b4fc4 0%,#44318D 38%,#20035A 78%);color:#fff;padding:24mm 20mm;position:relative;break-after:page}
+.cover .lg{background:#fff;border-radius:5mm;padding:4mm 6mm;display:inline-block}.cover .lg img{height:12mm;display:block}
+.cover h1{font-size:40pt;margin-top:50mm;line-height:1.05}.cover h1 span{color:#ffb3d6}
+.cover .sub{font-size:12.5pt;color:#e4ddff;margin-top:6mm;max-width:150mm}
+.cover .box{margin-top:14mm;border:1px solid rgba(255,255,255,.3);border-radius:4mm;padding:5mm 6mm;background:rgba(255,255,255,.07);max-width:160mm}
+.cover .box p{color:#efeaff;margin-bottom:1.5mm}
+.cover .ft{position:absolute;left:20mm;bottom:16mm;font-size:8.5pt;color:#cfc4ff}
+table{width:100%;border-collapse:collapse;font-size:8.8pt;margin:2mm 0 3mm}
+th{text-align:left;font-size:7.4pt;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:1.8mm 2mm;border-bottom:2px solid var(--l1)}
+td{padding:1.8mm 2mm;border-bottom:1px solid var(--line);vertical-align:top}
+tr{break-inside:avoid}
+.note{padding:3mm 4mm;border-radius:3mm;background:var(--warn);border-left:3px solid var(--a);margin:3mm 0;break-inside:avoid}
+.note.ok{background:var(--okbg);border-color:var(--ok)}
+.card{border:1px solid var(--line);border-radius:3mm;padding:3mm 4mm;margin-bottom:3mm;break-inside:avoid;background:var(--l3)}
+ul,ol{padding-left:5mm;margin-bottom:2mm}
+li{margin-bottom:1mm}
+.prompt{border-left:3px solid var(--p);background:var(--l3);padding:2mm 3.5mm;margin:1.5mm 0;font-style:italic;break-inside:avoid}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
+</style>
+</head>
+<body>
+
+<section class="cover first">
+  <div class="lg"><img src="../src/assets/logo-ba.png" alt="Blockchain AkademIA"></div>
+  <h1>Document de<br>passation<br><span>AI Act · L'essentiel</span></h1>
+  <p class="sub">Tout ce qu'il faut savoir pour suivre le test client et faire les modifications pendant l'absence de Matis, avec Claude Code.</p>
+  <div class="box">
+    <p><b>À lire en premier.</b> Pages 2 et 3 : l'essentiel en 5 minutes.</p>
+    <p>Le projet s'ouvre dans Claude Code depuis le dossier <b>01_Projet_source</b>. Claude y trouve automatiquement un fichier <b>CLAUDE.md</b> qui lui explique le projet.</p>
+    <p>État au 23 octobre 2026 : plateforme complète en FR et en EN, 16 vidéos, 10 paquets SCORM, guide et vue d'ensemble à jour.</p>
+  </div>
+  <p class="ft">Blockchain AkademIA · document interne · 23 octobre 2026</p>
+</section>
+
+<section class="first">
+<h2>1. L'essentiel en 5 minutes</h2>
+<p><b>Le produit.</b> Une formation en ligne à la maîtrise de l'IA, exigée par l'article 4 du règlement européen sur l'IA (AI Act). 4 niveaux d'environ 25 minutes, une évaluation finale, une attestation. Histoire fil rouge : l'entreprise fictive Nexalis, à Belval.</p>
+<table>
+<tr><th style="width:42mm">Élément</th><th>Détail</th></tr>
+<tr><td><b>Niveaux</b></td><td>1 Où est l'IA ? · 2 Qui est responsable ? · 3 Les lignes rouges · 4 Nos réflexes. Chacun : 2 vidéos, une séance (questions corrigées), 2 fiches PDF, 3 scénarios, un quiz de validation, un récap et un rapport.</td></tr>
+<tr><td><b>Validation d'un niveau</b></td><td>Au moins 80 % sur la séance et les scénarios <b>et</b> quiz de validation réussi (5 bonnes réponses sur 6, tirées parmi 12). Le niveau suivant se débloque alors.</td></tr>
+<tr><td><b>Évaluation finale</b></td><td>20 questions (5 par niveau), seuil 80 %, ouverte quand les 4 niveaux sont validés.</td></tr>
+<tr><td><b>Langues</b></td><td>Français par défaut. Bouton <b>FR | EN</b> en haut de la version web. Tout est traduit, vidéos comprises.</td></tr>
+<tr><td><b>Option « temps régulé »</b></td><td>Dans « Mon profil ». Désactivée par défaut. Option de démonstration : pages de cours affichées au moins 1/3 du temps indiqué, vidéos à voir en entier.</td></tr>
+</table>
+<h3>Les livrables (dossier 02_Livrables)</h3>
+<table>
+<tr><th style="width:42mm">Dossier</th><th>Usage</th></tr>
+<tr><td><code>web/</code></td><td><b>AI_Act_BA.html</b> + dossier <b>videos</b> (à garder côte à côte). Version de démonstration complète FR/EN. Ajouter <code>?apercu=1</code> à l'adresse pour débloquer tous les niveaux.</td></tr>
+<tr><td><code>scorm/</code></td><td>5 paquets Moodle en <b>français</b> : niveaux 1 à 4 + évaluation finale.</td></tr>
+<tr><td><code>scorm_en/</code></td><td>5 paquets Moodle en <b>anglais</b>, mêmes fonctions. Ne pas mélanger les deux séries dans un même cours.</td></tr>
+</table>
+<div class="note ok"><b>Ce qui a été vérifié :</b> chaque page en FR et en EN (aucun texte oublié), les PDF (pas d'élément coupé), les paquets SCORM avec un Moodle simulé (statut « passed », score, réponses, sauvegarde). <b>Pas encore fait :</b> un essai sur le vrai Moodle du client.</div>
+</section>
+
+<section>
+<h2>2. Le contenu du dossier « Passation AI Act BA »</h2>
+<table>
+<tr><th style="width:52mm">Dossier</th><th>Contenu</th></tr>
+<tr><td><b>00_LIRE_EN_PREMIER.pdf</b></td><td>Ce document.</td></tr>
+<tr><td><b>Retours_client.md</b></td><td>Modèle de tableau pour noter les retours du client pendant le test.</td></tr>
+<tr><td><b>01_Projet_source</b></td><td>Le projet complet, à ouvrir dans Claude Code. Code, contenu, vidéos utilisées, outil vidéo, guide, vue d'ensemble, <b>CLAUDE.md</b>, <b>LISEZMOI.md</b>.</td></tr>
+<tr><td><b>02_Livrables</b></td><td>Les fichiers prêts à envoyer (web, SCORM FR, SCORM EN), copie de <code>dist/</code> au 23 octobre.</td></tr>
+<tr><td><b>03_Videos</b></td><td>Les 16 vidéos d'avatars <b>d'origine</b>, sans sous-titres (8 FR, 8 EN). Les versions sous-titrées sont dans <code>01_Projet_source/src/videos_HD_soustitrees</code> (HD) et <code>src/videos</code> (720p, utilisées par la plateforme).</td></tr>
+<tr><td><b>04_Charte_et_logos</b></td><td>Logos Blockchain AkademIA (PNG, HD, fichier Illustrator .ai), planches de la charte (couleurs), polices de la plateforme (Poppins, Titillium Web).</td></tr>
+<tr><td><b>05_Scripts_videos</b></td><td>Textes des vidéos : FR définitifs (ce qui est réellement dit), première version FR, scripts EN.</td></tr>
+<tr><td><b>06_Documents</b></td><td>Guide utilisateur (pour le client), vue d'ensemble de tout le contenu (toutes les questions et réponses), dossier de recherche juridique qui sert de source au contenu.</td></tr>
+</table>
+<h3>Couleurs de la charte</h3>
+<table>
+<tr><th>Rôle</th><th>Code</th></tr>
+<tr><td>Violet principal</td><td><code>#44318D</code></td></tr>
+<tr><td>Violet sombre</td><td><code>#20035A</code></td></tr>
+<tr><td>Rose (accent, mots clés)</td><td><code>#D93F87</code></td></tr>
+</table>
+</section>
+
+<section>
+<h2>3. Travailler avec Claude Code</h2>
+<ol>
+<li>Ouvrir Claude Code dans le dossier <b>01_Projet_source</b> (application de bureau : choisir ce dossier ; en terminal : <code>cd</code> dans le dossier puis <code>claude</code>).</li>
+<li>Claude lit tout seul <b>CLAUDE.md</b> : il connaît la structure, les règles et les commandes. Pas besoin de lui réexpliquer le projet.</li>
+<li>Décrire la demande en français, simplement, en citant ce que le client a vu (page, texte, capture d'écran).</li>
+<li>Demander à Claude de <b>montrer ce qu'il compte changer avant de le faire</b> pour tout ce qui touche au contenu juridique ou aux vidéos.</li>
+<li>À la fin, Claude doit relancer <code>python3 build.py</code> et vérifier en FR <b>et</b> en EN.</li>
+</ol>
+<h3>Exemples de demandes</h3>
+<div class="prompt">« Le client signale une faute dans la question q32 du niveau 3 : remplace “…” par “…”, fais la même correction dans la version anglaise, puis régénère la plateforme. »</div>
+<div class="prompt">« Sur la page Récap du niveau 2, le bouton déborde sur mobile. Corrige-le, puis vérifie sur un écran de 375 px de large. »</div>
+<div class="prompt">« Le client veut que le quiz de validation fasse 8 questions au lieu de 6. Explique-moi d'abord l'impact (seuil, banques, SCORM), puis fais-le si c'est simple. »</div>
+<div class="prompt">« Régénère la vue d'ensemble et le guide utilisateur en PDF après les modifications d'aujourd'hui. »</div>
+<div class="prompt">« Mets à jour les paquets SCORM FR et EN et dis-moi lesquels ont changé. »</div>
+<div class="note"><b>Avec Codex ou un autre assistant :</b> lui faire lire <code>CLAUDE.md</code> et <code>LISEZMOI.md</code> en premier. Les règles sont les mêmes.</div>
+</section>
+
+<section>
+<h2>4. Où modifier quoi</h2>
+<table>
+<tr><th style="width:55mm">Le client demande…</th><th>Où (dans 01_Projet_source)</th></tr>
+<tr><td>Corriger un texte du cours, une question, un scénario</td><td><code>src/js/content.js</code> (FR) <b>et</b> l'équivalent anglais : <code>src/js/en.js</code> (niveau 1) ou <code>src/js/en_content.js</code> (niveaux 2 à 4)</td></tr>
+<tr><td>Changer une question du quiz de validation</td><td><code>src/js/quiz.js</code> (FR) et <code>EN_QUIZ</code> / <code>quiz</code> dans les fichiers EN. La 1re option est toujours la bonne.</td></tr>
+<tr><td>Changer le nombre de questions ou un seuil</td><td><code>SETTINGS</code> en haut de <code>src/js/quiz.js</code></td></tr>
+<tr><td>Modifier une fiche pratique</td><td><code>FICHES</code> dans <code>content.js</code> et <code>EN_FICHES</code> / <code>fiches</code> côté EN</td></tr>
+<tr><td>Un texte de bouton, de menu, de page</td><td><code>src/js/app.js</code>, puis sa traduction dans <code>UI_EN</code> de <code>src/js/en.js</code></td></tr>
+<tr><td>Couleurs, tailles, mise en page, impression</td><td><code>src/css/style.css</code></td></tr>
+<tr><td>Une illustration</td><td><code>src/js/illus.js</code></td></tr>
+<tr><td>Une vidéo</td><td>Voir la partie 6</td></tr>
+<tr><td>Le guide client ou la vue d'ensemble</td><td><code>Guide utilisateur/guide.html</code> · <code>Vue d'ensemble/generer_vue_ensemble.js</code></td></tr>
+</table>
+<div class="note"><b>Règle n° 1 :</b> un texte modifié en français doit l'être aussi en anglais, au même endroit. Sinon les deux versions divergent.</div>
+<div class="note"><b>Règle n° 2 :</b> après chaque modification, régénérer avec <code>python3 build.py</code>. Les fichiers de <code>dist/</code> ne se modifient jamais à la main.</div>
+<div class="note"><b>Règle n° 3 :</b> un changement de fond du contenu → mettre à jour <code>CONTENT_VERSION</code> et <code>CONTENT_DATE</code> dans <code>content.js</code> (affichés sur la plateforme et les PDF).</div>
+</section>
+
+<section>
+<h2>5. Avant d'envoyer une nouvelle version au client</h2>
+<div class="card">
+<ol>
+<li><code>python3 build.py</code> sans erreur.</li>
+<li>Ouvrir <code>dist/web/AI_Act_BA.html?apercu=1</code> en navigation privée : vérifier la page modifiée en <b>FR</b>, puis cliquer sur <b>EN</b> et vérifier aussi.</li>
+<li>Si la modification touche une page imprimable, tester son PDF (bouton PDF, puis « Enregistrer au format PDF »).</li>
+<li>Si la modification touche le contenu : régénérer la <b>vue d'ensemble</b> (et le guide si nécessaire).</li>
+<li>Copier le nouveau <code>dist/</code> dans <code>02_Livrables</code> si c'est ce dossier qui est partagé.</li>
+</ol>
+</div>
+<h3>Envoyer la version web</h3>
+<p>Compresser le dossier <code>web</code> entier (HTML + sous-dossier <code>videos</code>, environ 170 Mo) et l'envoyer par WeTransfer ou Drive. Ne jamais envoyer le HTML seul : les vidéos ne s'afficheraient pas.</p>
+<h3>Installer dans Moodle</h3>
+<ol>
+<li>Dans le cours : <b>Ajouter une activité</b> › <b>Paquetage SCORM</b>, déposer le zip du niveau 1.</li>
+<li>Réglages : note « la plus haute », tentatives illimitées, achèvement « doit obtenir le statut Réussi », affichage dans la fenêtre courante.</li>
+<li>Répéter pour les niveaux 2 à 4 puis l'évaluation finale ; enchaîner avec <b>Restreindre l'accès</b> › <b>Achèvement d'activité</b>.</li>
+<li>Faire un essai complet avec un compte test.</li>
+</ol>
+<div class="note"><b>Normal :</b> entre deux tentatives de quiz, Moodle peut afficher « échec ». Il passe à « réussi » dès que le quiz est réussi.</div>
+</section>
+
+<section>
+<h2>6. Les vidéos</h2>
+<p>Chaque module commence par une vidéo d'avatar d'environ 1 min 15, avec sous-titres incrustés et cartes animées aux couleurs BA. En mode EN, la plateforme lit la version <code>-en.mp4</code>.</p>
+<table>
+<tr><th style="width:52mm">Fichier</th><th>Rôle</th></tr>
+<tr><td><code>03_Videos/…</code></td><td>Vidéos d'avatars d'origine, sans habillage</td></tr>
+<tr><td><code>src/videos_HD_soustitrees/</code></td><td>Versions finales HD (archives)</td></tr>
+<tr><td><code>src/videos/</code></td><td>Versions 720p utilisées par la plateforme (noms à respecter : <code>niveau2-module1.mp4</code>, <code>niveau2-module1-en.mp4</code>…)</td></tr>
+</table>
+<h3>Refaire ou corriger une vidéo</h3>
+<ol>
+<li>Faire valider le nouveau texte (voix et texte à l'écran) <b>avant</b> de générer l'avatar.</li>
+<li>Générer la vidéo d'avatar (ElevenLabs / outil d'avatar habituel).</li>
+<li>Demander à Claude Code de l'habiller : il utilise <code>outils_video/habillage.py</code> et la configuration de la vidéo dans <code>outils_video/configs/</code> (sous-titres calés sur la voix + cartes).</li>
+<li>Puis <code>python3 build.py</code>.</li>
+</ol>
+<div class="note"><b>À savoir :</b> les configurations d'habillage des 8 vidéos <b>anglaises</b> sont conservées. Celles des vidéos <b>françaises</b> ne l'ont pas été : pour refaire une vidéo française, partir de la configuration anglaise du même module et la traduire (les cartes sont identiques).</div>
+</section>
+
+<section>
+<h2>7. Points en suspens et décisions à ne pas prendre seul</h2>
+<table>
+<tr><th style="width:50mm">Sujet</th><th>État</th></tr>
+<tr><td><b>Panneau administrateur</b></td><td>Prévu (aller à un niveau, simuler une validation, réinitialiser, montrer les bonnes réponses) mais <b>mis en attente</b> : Matis avait des réserves. Ne pas le développer sans son accord.</td></tr>
+<tr><td><b>Relecture juridique</b></td><td>À faire avant diffusion large : les 48 questions des quiz, les vrai/faux reformulés, les mauvaises réponses des scénarios, toute la version anglaise. La citation anglaise de l'article 4 modifié est une traduction non officielle.</td></tr>
+<tr><td><b>Test Moodle réel</b></td><td>Pas encore fait (seulement un Moodle simulé). À faire dès que le client donne accès à son Moodle, ou sur SCORM Cloud.</td></tr>
+<tr><td><b>Temps régulé</b></td><td>Option de démonstration. Ne bloque que la séance : le menu permet d'aller directement aux scénarios.</td></tr>
+<tr><td><b>Coordonnées dans le guide</b></td><td>La dernière page du guide renvoie à « votre interlocuteur Blockchain AkademIA », sans coordonnées.</td></tr>
+</table>
+<div class="note"><b>Demandes du client qui changent le produit</b> (nouvelle fonctionnalité, changement des règles de validation, nouveau contenu juridique) : les noter dans <code>Retours_client.md</code> et attendre le retour de Matis, sauf urgence.</div>
+</section>
+
+<section>
+<h2>8. Pièges connus</h2>
+<table>
+<tr><th style="width:55mm">Symptôme</th><th>Cause et solution</th></tr>
+<tr><td>La vidéo affiche « bientôt disponible »</td><td>Le dossier <code>videos</code> n'est pas à côté du HTML, ou un nom de fichier a changé.</td></tr>
+<tr><td>Un texte reste en français en mode EN</td><td>Texte ajouté sans traduction : l'ajouter dans <code>UI_EN</code> (<code>src/js/en.js</code>) ou dans le contenu EN.</td></tr>
+<tr><td>Progression perdue</td><td>Version web : liée au navigateur. Tester en navigation privée. Moodle : liée au compte.</td></tr>
+<tr><td>Texte noir en haut des PDF</td><td>En-têtes du navigateur : décocher « En-têtes et pieds de page » dans la fenêtre d'impression.</td></tr>
+<tr><td>Un niveau reste verrouillé pendant une démo</td><td>Ajouter <code>?apercu=1</code> à l'adresse.</td></tr>
+<tr><td>Les bonnes réponses sont toujours à la même place</td><td>Nouvelle question sans position : l'ajouter dans la table <code>POS</code> de <code>app.js</code>.</td></tr>
+<tr><td>Zip SCORM refusé par Moodle</td><td>Limite de taille du Moodle (paquets de 17 à 27 Mo) : demander à l'administrateur de l'augmenter.</td></tr>
+</table>
+<h3>Outils installés sur ce Mac</h3>
+<p>Python 3, Node.js, ffmpeg, Whisper (pour caler les sous-titres), Google Chrome (tests et PDF). Claude Code sait les utiliser.</p>
+</section>
+
+</body>
+</html>
